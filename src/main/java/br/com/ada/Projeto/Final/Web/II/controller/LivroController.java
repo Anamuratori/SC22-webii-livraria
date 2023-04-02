@@ -19,7 +19,6 @@ public class LivroController {
     @Autowired
     private LivroService livroService;
     @GetMapping()
-    @Secured({"ADMIN"})
     public ResponseEntity<Object> listar() {
         try {
             return ResponseEntity.ok(livroService.listar());
@@ -50,6 +49,7 @@ public class LivroController {
         }
     }
     @PostMapping
+    @Secured({"ADMIN"})
     public ResponseEntity<Object> criar(@RequestBody @Valid LivroDTO livroDTO){
 
         try {
@@ -64,6 +64,7 @@ public class LivroController {
     }
 
     @PutMapping("/{id}")
+    @Secured({"ADMIN"})
     public ResponseEntity<Object> editar(
             @RequestBody @Valid LivroDTO livroDTO,
             @PathVariable("id") Long id) {
@@ -83,6 +84,7 @@ public class LivroController {
     }
 
     @DeleteMapping("/{id}")
+    @Secured({"ADMIN"})
     public ResponseEntity<Object> deletar(
             @PathVariable("id") Long id) {
         try {
